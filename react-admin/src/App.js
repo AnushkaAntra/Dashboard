@@ -1,8 +1,30 @@
-function App() {
-  return (
-    <div className="App">
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./components/dashBoard";
+import LandingPage from "./components/LandingPage";
 
-    </div>
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDisplayMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <LandingPage
+              darkMode={darkMode}
+              toggleDisplayMode={toggleDisplayMode}
+            />
+          }
+        />
+        <Route path="/dashboard" element={<Dashboard darkMode={darkMode} toggleDisplayMode={toggleDisplayMode}/>} />
+      </Routes>
+    </>
   );
 }
 
